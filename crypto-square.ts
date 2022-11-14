@@ -25,15 +25,21 @@ export default class Crypto {
       res.push(this.message.substring(i, i+this.size()))
     }
 
-    //check and add if necessary trailing spaces to last element
-    if(res[res.length-1].length !== this.size()){
-      res[res.length-1] = res[res.length-1] + " ".repeat(this.size() - res[res.length-1].length)
+    return res
+  }
+
+  ciphertext(): string {
+    const segments = this.plaintextSegments()
+    const rows = Math.ceil(this.message.length/this.size())
+    let res = ''
+
+    for(let i = 0; i<this.size(); i++){
+      for(let j = 0; j<rows; j++)
+      {
+        res += segments[j].substring(i, i+1)
+      }
     }
 
     return res
-  }
-  
-  ciphertext(): string {
-    throw new Error("Method not implemented.");
   }
 }
