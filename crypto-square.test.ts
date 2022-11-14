@@ -44,13 +44,24 @@ describe("Crypto", () => {
   
   it("plain text segments", () => {
     const crypto = new Crypto("ZOMG! ZOMBIES!!!")
-    expect(crypto.plaintextSegments()).toEqual(["zomg", "zomb", "ies"])
+    expect(crypto.plaintextSegments()).toEqual(["zomg", "zomb", "ies "])
   })
   it("plain text segments with size 1", () => {
     const crypto = new Crypto("1")
     expect(crypto.plaintextSegments()).toEqual(["1"])
   })
   
+  it("plain text segments with trailing spaces", () => {
+    const crypto = new Crypto("ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots")
+    expect(crypto.plaintextSegments()).toEqual(["ifmanwas",
+    "meanttos",
+    "tayonthe",
+    "groundgo",
+    "dwouldha",
+    "vegivenu",
+    "sroots  "])
+  })
+
   it("cipher text", () => {
     const crypto = new Crypto("Time is an illusion. Lunchtime doubly so.")
     expect(crypto.ciphertext()).toEqual("tasneyinicdsmiohooelntuillibsuuml")
@@ -59,5 +70,10 @@ describe("Crypto", () => {
   it("cipher text", () => {
     const crypto = new Crypto("We all know interspecies romance is weird.")
     expect(crypto.ciphertext()).toEqual("wneiaweoreneawssciliprerlneoidktcms")
+  })
+
+  it("cipher chunks text", () => {
+    const crypto = new Crypto("ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots")
+    expect(crypto.cipherChunksText()).toEqual("imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau ")
   })
 })
