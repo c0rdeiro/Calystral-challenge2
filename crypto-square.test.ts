@@ -16,17 +16,17 @@ describe("Crypto", () => {
     expect(crypto.size()).toEqual(2)
   })
 
-  xit("size of small square with additional non-number chars", () => {
+  it("size of small square with additional non-number chars", () => {
     const crypto = new Crypto("1 2 3 4")
     expect(crypto.size()).toEqual(2)
   })
 
-  xit("size of slightly larger square", () => {
+  it("size of slightly larger square", () => {
     const crypto = new Crypto("123456789")
     expect(crypto.size()).toEqual(3)
   })
 
-  xit("size of non-perfect square", () => {
+  it("size of non-perfect square", () => {
     const crypto = new Crypto("123456789abc")
     expect(crypto.size()).toEqual(4)
   })

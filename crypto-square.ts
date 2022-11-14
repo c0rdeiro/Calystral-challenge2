@@ -6,14 +6,17 @@ export default class Crypto {
   }
 
   normalizePlaintext(): string {
-    return this.message
+    this.message = this.message
       .toLocaleLowerCase()
       .replaceAll(/\W/g, "") // \W represents non-word character
+    return this.message
   }
 
   size(): number {
-    throw new Error("Method not implemented.");
+    this.normalizePlaintext()
+    return  Math.ceil(Math.sqrt(this.message.length))
   }
+
   plaintextSegments(): string {
     throw new Error("Method not implemented.");
   }
