@@ -31,7 +31,7 @@ describe("Crypto", () => {
     expect(crypto.size()).toEqual(4)
   })
 
-  xit("plain text segments", () => {
+  it("plain text segments", () => {
     const crypto = new Crypto("Never vex thine heart with idle woes")
     expect(crypto.plaintextSegments()).toEqual([
       "neverv",
@@ -41,10 +41,25 @@ describe("Crypto", () => {
       "lewoes"
     ])
   })
-
-  xit("plain text segments", () => {
+  
+  it("plain text segments", () => {
     const crypto = new Crypto("ZOMG! ZOMBIES!!!")
-    expect(crypto.plaintextSegments()).toEqual(["zomg", "zomb", "ies"])
+    expect(crypto.plaintextSegments()).toEqual(["zomg", "zomb", "ies "])
+  })
+  it("plain text segments with size 1", () => {
+    const crypto = new Crypto("1")
+    expect(crypto.plaintextSegments()).toEqual(["1"])
+  })
+  
+  it("plain text segments with trailing spaces", () => {
+    const crypto = new Crypto("ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots")
+    expect(crypto.plaintextSegments()).toEqual(["ifmanwas",
+    "meanttos",
+    "tayonthe",
+    "groundgo",
+    "dwouldha",
+    "vegivenu",
+    "sroots  "])
   })
 
   xit("cipher text", () => {
