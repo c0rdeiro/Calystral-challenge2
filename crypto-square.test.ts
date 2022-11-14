@@ -6,7 +6,7 @@ describe("Crypto", () => {
     expect(crypto.normalizePlaintext()).toEqual("splunk")
   })
 
-  xit("normalize numbers", () => {
+  it("normalize numbers", () => {
     const crypto = new Crypto("1, 2, 3 GO!")
     expect(crypto.normalizePlaintext()).toEqual("123go")
   })
